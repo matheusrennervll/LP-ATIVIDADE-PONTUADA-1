@@ -1,46 +1,24 @@
 import os
 os.system('cls')
 
-preco_alcool = 3.79
-preco_gasolina = 6.59
-
-litros = float(input("Digite a quantidade de litros vendidos: "))
-tipo = input("Digite o tipo de combustível (A - Álcool / G - Gasolina): ")
-
-valor_a_pagar = 0
-
+litros = float(input("Quantidade de litros: "))
+tipo = input("Tipo (A - Álcool / G - Gasolina): ")
 
 if tipo == 'A' or tipo == 'a':
-  
-    valor_bruto = litros * preco_alcool
-    if litros <= 20:
-        desconto = 0.03  
-    else:
-        desconto = 0.05  
-    
-    valor_a_pagar = valor_bruto - (valor_bruto * desconto)
-
+    nome = "Álcool"
+    preco = 3.79
+    desconto = 0.03 if litros <= 20 else 0.05
 elif tipo == 'G' or tipo == 'g':
-  
-    valor_bruto = litros * preco_gasolina
-    if litros <= 20:
-        desconto = 0.04  
-    else:
-        desconto = 0.06  
-        
-    valor_a_pagar = valor_bruto - (valor_bruto * desconto)
-
+    nome = "Gasolina"
+    preco = 6.59
+    desconto = 0.04 if litros <= 20 else 0.06
 else:
-    print("Erro: Tipo de combustível inválido!")
+    preco = 0 
 
-if valor_a_pagar > 0:
-    print("\n--- Resumo do Abastecimento ---")
-    
-    if tipo == 'A' or tipo == 'a':
-        nome_combustivel = "Álcool"
-    else:
-        nome_combustivel = "Gasolina"
-        
-    print(f"Combustível: {nome_combustivel}")
-    print(f"Litros: {litros:.2f}L")
-    print(f"Total a pagar: R$ {valor_a_pagar:.2f}")
+
+if preco > 0:
+    total = (litros * preco) * (1 - desconto)
+    print(f"\nResumo: {nome}")
+    print(f"Total: R$ {total:.2f}")
+else:
+    print("Erro: Tipo inválido!")
