@@ -1,26 +1,22 @@
 import os
 os.system('cls')
 
-renda_mensal = float(input("Digite a renda mensal do usuário: "))
-valor_emprestimo = float(input("Digite o valor total do empréstimo: "))
-num_prestacoes = int(input("Digite o número de prestações desejadas: "))
+renda = float(input("Renda mensal: "))
+valor_total = float(input("Valor do empréstimo: "))
+parcelas = int(input("Nº de prestações: "))
 
+valor_parcela = valor_total / parcelas
+limite_total = renda * 10
+limite_parcela = renda * 0.30
 
-valor_prestacao = valor_emprestimo / num_prestacoes
-limite_emprestimo = renda_mensal * 10
-limite_prestacao = renda_mensal * 0.30
+print(f"\nParcela: R$ {valor_parcela:.2f} (Máx: R$ {limite_parcela:.2f})")
+print(f"Total: R$ {valor_total:.2f} (Máx: R$ {limite_total:.2f})")
 
-print("\n--- Resumo da Análise ---")
-print(f"Valor da prestação: R$ {valor_prestacao:.2f} (Limite permitido: R$ {limite_prestacao:.2f})")
-print(f"Valor do empréstimo: R$ {valor_emprestimo:.2f} (Limite permitido: R$ {limite_emprestimo:.2f})")
-
-
-if valor_emprestimo <= limite_emprestimo and valor_prestacao <= limite_prestacao:
-    print("\nResultado: Empréstimo CONCEDIDO! ")
+if valor_total <= limite_total and valor_parcela <= limite_parcela:
+    print("\nResultado: Empréstimo CONCEDIDO!")
 else:
-    print("\nResultado: Empréstimo NEGADO. ")
-    
-    if valor_emprestimo > limite_emprestimo:
-        print("- Motivo: O valor total solicitado é maior que 10 vezes a renda mensal.")
-    if valor_prestacao > limite_prestacao:
-        print("- Motivo: O valor da prestação compromete mais de 30% da renda mensal.")
+    print("\nResultado: Empréstimo NEGADO.")
+    if valor_total > limite_total:
+        print("- Motivo: Valor total excede 10x a renda.")
+    if valor_parcela > limite_parcela:
+        print("- Motivo: Parcela excede 30% da renda.")
